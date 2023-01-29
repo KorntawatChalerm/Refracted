@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     public bool isCrouchPressed;
     private bool isRunning;
     private string currentAnimaton;
+    public bool isdead;
 
     [SerializeField]
     private float walkSpeed = 5f;
-
+    [SerializeField]
+    private float runAddSpeed = 2f;
     //States
 
     const string PLAYER_IDLE = "HaruIdle";
@@ -34,11 +36,22 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             Debug.Log("crouch");
+            Crouching();
             isCrouchPressed = true;
         }
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             isCrouchPressed = false;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isRunning = true;
+            walkSpeed += runAddSpeed;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false;
+            walkSpeed -= runAddSpeed;
         }
         //Checking for inputs
         xAxis = Input.GetAxisRaw("Horizontal");
@@ -50,29 +63,29 @@ public class PlayerController : MonoBehaviour
 
         //Check update movement based on input
         Vector2 vel = new Vector2(0, rb2d.velocity.y);
-      
 
-        if (xAxis < 0 &&!isCrouchPressed)
+        if (isCrouchPressed)
+        {
+            return;
+        }
+
+        if (xAxis < 0)
         {
             vel.x = -walkSpeed;
             transform.localScale = new Vector2(-1, 1);
 
         }
-        else if (xAxis > 0 &&!isCrouchPressed)
+        else if (xAxis > 0)
         {
             vel.x = walkSpeed;
             transform.localScale = new Vector2(1, 1);
 
         }
-        else if(xAxis == 0 && !isCrouchPressed)
-        {
-            vel.x = 0;
-            ChangeAnimationState(PLAYER_IDLE);
-        }
+        
         else
         {
             vel.x = 0;
-            ChangeAnimationState(PLAYER_CROUCH);
+            ChangeAnimationState(PLAYER_IDLE);
         }
 
         if(xAxis != 0 & !isRunning)
@@ -87,11 +100,14 @@ public class PlayerController : MonoBehaviour
         }
         //assign the new velocity to the rigidbody
         rb2d.velocity = vel;
+    }
 
-
-       
+    void Crouching()
+    {
+        ChangeAnimationState(PLAYER_CROUCH);
 
     }
+
     void ChangeAnimationState(string newAnimation)
     {
         if (currentAnimaton == newAnimation) return;

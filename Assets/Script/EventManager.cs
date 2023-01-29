@@ -7,7 +7,7 @@ public class EventManager : MonoBehaviour
     public static EventManager instance;
 
     public event Action TestEvent;
-    public event Action TestInteraction;
+    public event Action<int> TestInteraction;
 
 
 
@@ -24,16 +24,16 @@ public class EventManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-   
+
     public void StartTestEvent()
     {
         TestEvent?.Invoke();
     }
 
-    public void StartTestInteraction()
+    public void StartTestInteraction(int id)
     {
-        TestInteraction?.Invoke();
+        TestInteraction?.Invoke(id);
     }
-
+   
 
 }
