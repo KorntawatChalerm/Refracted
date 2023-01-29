@@ -24,7 +24,7 @@ public class Interactable : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("true");
+           // Debug.Log("true");
             interactable = true;
             bubble.SetActive(true);
         }
