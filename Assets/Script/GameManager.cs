@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject deadUI;
     public GameObject map;
+    public GameObject diary;
     public int diaryCount;
 
 
@@ -69,6 +70,23 @@ public class GameManager : MonoBehaviour
                 Debug.Log("map open");
                 Time.timeScale = 0f;
                 map.SetActive(true);
+            }
+
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            if (diary.activeSelf)
+            {
+                Debug.Log("diary close");
+                Time.timeScale = 1f;
+                diary.SetActive(false);
+            }
+            else
+            {
+
+                Debug.Log("diary open");
+                Time.timeScale = 0f;
+                diary.SetActive(true);
             }
 
         }

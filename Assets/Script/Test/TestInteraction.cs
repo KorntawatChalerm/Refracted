@@ -7,14 +7,15 @@ public class TestInteraction : MonoBehaviour
     bool fall = false;
     public Transform point;
     public float fallspeed;
-
+    public int correctID;
     void Start()
     {
         EventManager.instance.TestInteraction += Falldown;
     }
 
-    void Falldown()
+    void Falldown(int id)
     {
+        if (id == correctID)
         fall = true;
     }
     void Update()
