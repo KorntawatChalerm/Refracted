@@ -10,4 +10,7 @@ public class Dialogue
 
     [TextArea(3, 10)]
     public string[] sentences;
+    public Sprite[] sprite1;
+    public Sprite[] sprite2;
+
 }
