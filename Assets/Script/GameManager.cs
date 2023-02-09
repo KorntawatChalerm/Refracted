@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject deadUI;
     public GameObject map;
-    public GameObject diary;
+    public GameObject diary; //diary ui
     public int diaryCount;
 
 

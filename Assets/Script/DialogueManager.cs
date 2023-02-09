@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
+    public GameObject dialogueUI;
     public TMP_Text text;
-    public SpriteRenderer leftSprite;
-    public SpriteRenderer rightSprite;
+    public Image leftSprite;
+    public Image rightSprite;
 
     private Queue<string> sentences;
     private Queue<Sprite> sprite1list;
@@ -37,6 +39,8 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("dialogue started");
         isTalking = true;
         Time.timeScale = 0;
+        dialogueUI.SetActive(true);
+
 
         sentences.Clear();
         sprite1list.Clear();
@@ -52,7 +56,7 @@ public class DialogueManager : MonoBehaviour
         }
         foreach (Sprite image in dialogue.sprite2)
         {
-            sprite1list.Enqueue(image);
+            sprite2list.Enqueue(image);
         }
         DisplayNextSentence();
     }
@@ -68,10 +72,21 @@ public class DialogueManager : MonoBehaviour
         Sprite sprite1 = sprite1list.Dequeue();
         Sprite sprite2 = sprite2list.Dequeue();
         Debug.Log(sentence);
-        text.text = (sentence);
+     //   text.text = (sentence);
         leftSprite.sprite = (sprite1);
         rightSprite.sprite = (sprite2);
+        StopAllCoroutines();
+        StartCoroutine(TypingSentence(sentence));
+    }
+    IEnumerator TypingSentence(string sentence)
+    {
+        text.text = "";
+        foreach(char letter in sentence.ToCharArray())
+        {
+            text.text += letter;
 
+            yield return null;
+        }
     }
     private void Update()
     {
@@ -79,7 +94,6 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -91,5 +105,7 @@ public class DialogueManager : MonoBehaviour
         Time.timeScale = 1;
         isTalking = false;
         Debug.Log("End conver");
+        dialogueUI.SetActive(false);
+
     }
 }
