@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-       
+        if (GameManager.instance.isdead)
+        {
+            return;
+        }
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -58,6 +61,10 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (GameManager.instance.isdead)
+        {
+            return;
+        }
 
         //------------------------------------------
 
@@ -66,6 +73,9 @@ public class PlayerController : MonoBehaviour
 
         if (isCrouchPressed)
         {
+            vel.x = 0;
+            rb2d.velocity = vel;
+
             return;
         }
 

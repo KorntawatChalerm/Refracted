@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject deadUI;
     public GameObject map;
+    public GameObject chaseVolume;
     public GameObject diary; //diary ui
     public int diaryCount;
 
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     private bool isMainmenu = false;
     private int currentMap;
     public bool isdead;
+    public bool isChasing;
 
     private void Awake()
     {
@@ -42,8 +44,16 @@ public class GameManager : MonoBehaviour
         {
             deadUI.SetActive(true);
             Time.timeScale = 0f;
-            isPause = true;
             return;
+        }
+        if (isChasing)
+        {
+            chaseVolume.SetActive(true);
+        }
+        else
+        {
+            chaseVolume.SetActive(false);
+
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
