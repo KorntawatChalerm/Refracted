@@ -7,8 +7,9 @@ using Unity;
 public class SceneManage : MonoBehaviour
 {
     public static SceneManage instance;
+    public GameObject settingUI;
     //public GameObject settingUI;
-    Animator anim;
+     Animator anim;
     public int currentScene;
     void Start()
     {
@@ -27,13 +28,13 @@ public class SceneManage : MonoBehaviour
     }
     void Update()
     {
-        
+
     }
-    void NewGame()
+    public void  NewGame()
     {
         SceneManager.LoadScene(1);
     }
-    void BacktoMainmenu()
+    public void BacktoMainmenu()
     {
         currentScene = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("SavedScene", currentScene);
@@ -41,7 +42,7 @@ public class SceneManage : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
 
     }
-    void Continue()
+    public void Continue()
     {
         int scene = PlayerPrefs.GetInt("SavedScene");
         int diary = PlayerPrefs.GetInt("Diary");
@@ -49,15 +50,19 @@ public class SceneManage : MonoBehaviour
         GameManager.instance.diaryCount = diary;
     }
 
-  /*  void Setting()
+    public void Setting()
     {
-        settingUI.SetActive(true);
+        if(settingUI.activeSelf)
+        settingUI.SetActive(false);
+        else
+            settingUI.SetActive(true);
 
-    }*/
+    }
 
     public void ChangeScene(int index)
     {
-        anim.Play("FadeOut");
+        Debug.Log("changingScene");
+        anim.Play("FadeOut",0,0f);
         StartCoroutine(StartChangeScene(index));
     }
    IEnumerator StartChangeScene(int index)
@@ -66,6 +71,10 @@ public class SceneManage : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-   
+   public void Exit()
+    {
+        Application.Quit();
+    }
 
+    
 }

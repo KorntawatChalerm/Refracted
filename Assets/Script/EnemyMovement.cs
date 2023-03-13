@@ -46,6 +46,10 @@ public class EnemyMovement : MonoBehaviour
         {
             //player die
             GameManager.instance.isdead = true;
-        }
+        }/*if (collision.CompareTag("EndChase"))
+        {
+            //end chase
+            GameManager.instance.isdead = false;
+        }*/
     }
 }

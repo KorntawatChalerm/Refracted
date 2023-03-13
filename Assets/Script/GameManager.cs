@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,16 +10,25 @@ public class GameManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject deadUI;
     public GameObject map;
-    public GameObject chaseVolume;
     public GameObject diary; //diary ui
     public int diaryCount;
 
+    [Header("Volume")]
+    [SerializeField]
+    private Volume normalVolume;
+    [SerializeField]
+    private Volume mirrorVolume;
+    public GameObject chaseVolume;
 
     private bool isPause;
     private bool isMainmenu = false;
     private int currentMap;
+    [Header("Bool checker")]
     public bool isdead;
     public bool isChasing;
+    public bool isDiary;
+    public bool normalWorld;
+    public bool mirrorWorld1;
 
     private void Awake()
     {
@@ -46,6 +56,21 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             return;
         }
+
+        if (normalWorld)
+        {
+            normalVolume.weight = 1f;
+        }
+        else if (mirrorWorld1)
+        {
+            normalVolume.weight = 0f;
+            mirrorVolume.weight = 1f;
+        }
+        else
+        {
+            mirrorVolume.weight = 0f;
+        }
+
         if (isChasing)
         {
             chaseVolume.SetActive(true);
@@ -55,14 +80,19 @@ public class GameManager : MonoBehaviour
             chaseVolume.SetActive(false);
 
         }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPause)
             {
+                pauseUI.SetActive(false);
+
                 Resume();
             }
             else
             {
+                pauseUI.SetActive(true);
+
                 Pause();
             }
         }
@@ -108,13 +138,11 @@ public class GameManager : MonoBehaviour
 
     public void Resume()
     {
-        pauseUI.SetActive(false);
         Time.timeScale = 1f;
         isPause = false;
     }
     public void Pause()
     {
-        pauseUI.SetActive(true);
         Time.timeScale = 0f;
         isPause = true;
     }

@@ -85,7 +85,7 @@ public class DialogueManager : MonoBehaviour
         {
             text.text += letter;
 
-            yield return new WaitForSecondsRealtime(0.1f);
+            yield return new WaitForSecondsRealtime(0.05f);
         }
     }
     private void Update()

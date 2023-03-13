@@ -5,20 +5,29 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public GameObject bubble;
+    public GameObject player;
     bool interactable;
-    public int id;
+    public int mapid;
+    public int doorid;
 
     void Start()
     {
-        
+        if (PlayerPrefs.GetInt("doorID") == doorid)
+        {
+            Debug.Log("door " + doorid);
+            player = GameObject.Find("Player");
+            player.transform.position = gameObject.transform.position;
+        }
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && interactable)
         {
-            SceneManage.instance.ChangeScene(id);
-            Map.instance.MapUpdate(id);
+            GameManager.instance.isChasing=false;
+            PlayerPrefs.SetInt("doorID", doorid);
+            Map.instance.MapUpdate(mapid);
+            SceneManage.instance.ChangeScene(mapid);
         }
     }
 

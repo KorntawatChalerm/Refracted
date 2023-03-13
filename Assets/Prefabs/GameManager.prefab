@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2025744841
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2025744842}
+  - component: {fileID: 2025744843}
+  m_Layer: 0
+  m_Name: Normal volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2025744842
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025744841}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1170277825138715724}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2025744843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025744841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: edfa6016b0cb11b4fa5e1518a7a4e23b, type: 2}
 --- !u!1 &4440595457274968623
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4440595457560038883
 RectTransform:
   m_ObjectHideFlags: 0
@@ -122,7 +171,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 21584875db6709c4eb7eef4c483b3a34, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -142,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf19170e0e842a478b7724dc61c672f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingUI: {fileID: 0}
   currentScene: 0
 --- !u!1 &4440595457637552049
 GameObject:
@@ -232,7 +282,7 @@ RectTransform:
   - {fileID: 4440595458622515392}
   - {fileID: 4440595458866444747}
   m_Father: {fileID: 4440595458145767689}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -654,8 +704,7 @@ Transform:
   m_Children:
   - {fileID: 4440595459313036260}
   - {fileID: 4440595457274968620}
-  - {fileID: 4440595459194156014}
-  - {fileID: 4440595458367397306}
+  - {fileID: 1170277825138715724}
   - {fileID: 4440595457655243611}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -675,11 +724,16 @@ MonoBehaviour:
   pauseUI: {fileID: 4440595457274968623}
   deadUI: {fileID: 4440595457655243610}
   map: {fileID: 4440595457815728714}
-  chaseVolume: {fileID: 4440595458367397308}
   diary: {fileID: 0}
   diaryCount: 0
+  normalVolume: {fileID: 2025744843}
+  mirrorVolume: {fileID: 4440595459194156015}
+  chaseVolume: {fileID: 4440595458367397308}
   isdead: 0
   isChasing: 0
+  isDiary: 0
+  normalWorld: 0
+  mirrorWorld1: 0
 --- !u!1 &4440595458227925032
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +1020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4440595458367397306
 Transform:
   m_ObjectHideFlags: 0
@@ -974,13 +1028,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4440595458367397308}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4440595458145767689}
-  m_RootOrder: 3
+  m_Father: {fileID: 1170277825138715724}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4440595458367397309
 MonoBehaviour:
@@ -1689,7 +1743,7 @@ GameObject:
   - component: {fileID: 4440595459194156014}
   - component: {fileID: 4440595459194156015}
   m_Layer: 0
-  m_Name: Global Volume
+  m_Name: Mirror1 volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1707,8 +1761,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4440595458145767689}
-  m_RootOrder: 2
+  m_Father: {fileID: 1170277825138715724}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4440595459194156015
 MonoBehaviour:
@@ -1725,8 +1779,8 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: bad7eeba10f6a744a8db6b2909fe4027, type: 2}
+  weight: 0
+  sharedProfile: {fileID: 11400000, guid: 2cf9d0610d18cbd488f18ad4dc5cff6b, type: 2}
 --- !u!1 &4440595459285460959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,3 +2127,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &4462201091310266642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1170277825138715724}
+  m_Layer: 0
+  m_Name: Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1170277825138715724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462201091310266642}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4440595458367397306}
+  - {fileID: 4440595459194156014}
+  - {fileID: 2025744842}
+  m_Father: {fileID: 4440595458145767689}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

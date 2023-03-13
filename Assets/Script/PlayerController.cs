@@ -1,21 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+
 
 public class PlayerController : MonoBehaviour
 {
     private float xAxis;
+    private float speed;
     private Rigidbody2D rb2d;
     private Animator animator;
     public bool isCrouchPressed;
     private bool isRunning;
     private string currentAnimaton;
     public bool isdead;
+    public bool ismoving;
+    public bool isExhaust;
+    public float volumeWeight;
+
 
     [SerializeField]
-    private float walkSpeed = 5f;
+    Volume exhaustVolume;
+
     [SerializeField]
-    private float runAddSpeed = 2f;
+    private float walkSpeed = 4f;
+    [SerializeField]
+    private float runSpeed = 5f;
+    [SerializeField]
+    private float staminaMax = 100f;
+    [SerializeField]
+    private float staminaLoseRate = 5f;
+    [SerializeField]
+    private float staminaFillRate = 5f;
+    [SerializeField]
+    private float staminaCurrent = 2f;
+    [SerializeField]
+    private float exhaustTime;
+
     //States
 
     const string PLAYER_IDLE = "HaruIdle";
@@ -46,16 +67,22 @@ public class PlayerController : MonoBehaviour
         {
             isCrouchPressed = false;
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift)  && ismoving && !isExhaust)
         {
+
             isRunning = true;
-            walkSpeed += runAddSpeed;
+            Running();
+
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (staminaCurrent != staminaMax)
         {
-            isRunning = false;
-            walkSpeed -= runAddSpeed;
+
+            Walk();
+
         }
+
+        volumeWeight = ((staminaCurrent/100)-1)*-1;
+        exhaustVolume.weight = volumeWeight;
         //Checking for inputs
         xAxis = Input.GetAxisRaw("Horizontal");
     }
@@ -70,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
         //Check update movement based on input
         Vector2 vel = new Vector2(0, rb2d.velocity.y);
+        ismoving = false;
 
         if (isCrouchPressed)
         {
@@ -81,29 +109,29 @@ public class PlayerController : MonoBehaviour
 
         if (xAxis < 0)
         {
-            vel.x = -walkSpeed;
+            vel.x = -speed;
             transform.localScale = new Vector2(-1, 1);
-
+            ismoving = true;
         }
         else if (xAxis > 0)
         {
-            vel.x = walkSpeed;
+            vel.x = speed;
             transform.localScale = new Vector2(1, 1);
-
+            ismoving = true;
         }
-        
+
         else
         {
             vel.x = 0;
             ChangeAnimationState(PLAYER_IDLE);
         }
 
-        if(xAxis != 0 & !isRunning)
+        if (xAxis != 0 & !isRunning)
         {
             ChangeAnimationState(PLAYER_WALK);
 
         }
-        else if(xAxis != 0 & isRunning)
+        else if (xAxis != 0 & isRunning)
         {
             ChangeAnimationState(PLAYER_RUN);
 
@@ -125,4 +153,44 @@ public class PlayerController : MonoBehaviour
         animator.Play(newAnimation);
         currentAnimaton = newAnimation;
     }
+
+    void Running()
+    {
+        if (staminaCurrent > 0)
+        {
+            speed = runSpeed;
+            //drain stamina
+            staminaCurrent -= staminaLoseRate * Time.deltaTime;
+        }
+        else
+        {
+            StartCoroutine(RunCooldown());
+        }
+
+    }
+    void Walk()
+    {
+        isRunning = false;
+
+        speed = walkSpeed;
+        //regen stamina
+        if (staminaCurrent < staminaMax)
+        {
+            staminaCurrent += staminaFillRate * Time.deltaTime;
+        }
+
+    }
+
+    IEnumerator RunCooldown()
+    {
+
+        isExhaust = true;
+
+        yield return new WaitForSeconds(exhaustTime);
+        isExhaust = false;
+
+        StopCoroutine(RunCooldown());
+
+    }
+
 }

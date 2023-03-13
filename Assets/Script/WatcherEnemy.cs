@@ -12,6 +12,8 @@ public class WatcherEnemy : MonoBehaviour
     private float alertCurrent;
     [SerializeField]
     private float alertFill;
+
+    public float blinkDelay;
     void Start()
     {
         StartCoroutine(Blinking());
@@ -27,9 +29,9 @@ public class WatcherEnemy : MonoBehaviour
         while (true)
         {
             blinking = false;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(blinkDelay);
             blinking = true;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(blinkDelay);
 
         }
 
@@ -44,7 +46,7 @@ public class WatcherEnemy : MonoBehaviour
             return;
         }
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !Input.GetKey(KeyCode.LeftControl))
         {
             alertCurrent += alertFill*Time.deltaTime;
             if(alertCurrent >= alertMax)
