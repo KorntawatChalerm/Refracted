@@ -31,7 +31,7 @@ public class EventManager : MonoBehaviour
         TestEvent?.Invoke();
     }
 
-    public void StartTestInteraction(int id)
+    public void StartInteraction(int id)
     {
         TestInteraction?.Invoke(id);
     }
@@ -40,5 +40,6 @@ public class EventManager : MonoBehaviour
     {
         chaseEvent?.Invoke(id);
     }
+
 
 }

@@ -33,6 +33,7 @@ public class SceneManage : MonoBehaviour
     public void  NewGame()
     {
         SceneManager.LoadScene(1);
+        PlayerPrefs.DeleteAll();
     }
     public void BacktoMainmenu()
     {

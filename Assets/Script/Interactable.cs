@@ -18,7 +18,7 @@ public class Interactable : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && interactable)
         {
             Debug.Log("weee");
-            EventManager.instance.StartTestInteraction(id);
+            EventManager.instance.StartInteraction(id);
 
         }
     }

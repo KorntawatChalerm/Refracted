@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject map;
     public GameObject diary; //diary ui
     public int diaryCount;
+    public int progress;
 
     [Header("Volume")]
     [SerializeField]

@@ -4,6 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class Door : MonoBehaviour
 {
+    public Dialogue dialogue;
     public GameObject bubble;
     public GameObject player;
     bool interactable;
@@ -17,6 +18,9 @@ public class Door : MonoBehaviour
             Debug.Log("door " + doorid);
             player = GameObject.Find("Player");
             player.transform.position = gameObject.transform.position;
+            Camera camera = FindObjectOfType<Camera>();
+            Vector3 campos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10f);
+            camera.transform.position = campos;
         }
     }
 
@@ -24,10 +28,18 @@ public class Door : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && interactable)
         {
-            GameManager.instance.isChasing=false;
-            PlayerPrefs.SetInt("doorID", doorid);
-            Map.instance.MapUpdate(mapid);
-            SceneManage.instance.ChangeScene(mapid);
+            if (GameManager.instance.progress == PlayerPrefs.GetInt("Progress"))
+            {
+                GameManager.instance.isChasing = false;
+                PlayerPrefs.SetInt("doorID", doorid);
+                Map.instance.MapUpdate(mapid);
+                SceneManage.instance.ChangeScene(mapid);
+            }
+            else
+            {
+                DialogueManager.instance.StartDialogue(dialogue);
+
+            }
         }
     }
 
