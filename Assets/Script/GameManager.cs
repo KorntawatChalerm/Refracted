@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
@@ -19,14 +19,20 @@ public class GameManager : MonoBehaviour
     private Volume normalVolume;
     [SerializeField]
     private Volume mirrorVolume;
-    public GameObject chaseVolume;
+    public Volume chaseVolume;
+    public GameObject enemy;
+    public GameObject player;
+    public float maxChaseVolume;
+    [SerializeField]
+    private float distanceThreshold = 5f;
+    private float distanceRatio = 0f;
+
 
     private bool isPause;
     private bool isMainmenu = false;
     private int currentMap;
     [Header("Bool checker")]
     public bool isdead;
-    public bool isChasing;
     public bool isDiary;
     public bool normalWorld;
     public bool mirrorWorld1;
@@ -42,6 +48,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
     }
 
     private void Update()
@@ -67,32 +74,35 @@ public class GameManager : MonoBehaviour
             normalVolume.weight = 0f;
             mirrorVolume.weight = 1f;
         }
-        else
-        {
-            mirrorVolume.weight = 0f;
-        }
 
-        if (isChasing)
+        if (enemy == null)
         {
-            chaseVolume.SetActive(true);
+            // Enemy object not found, set distance ratio to 0
+            distanceRatio = 0f;
         }
         else
         {
-            chaseVolume.SetActive(false);
+            //enemy = GameObject.FindWithTag("Enemy");
 
+            player = GameObject.FindWithTag("Player");
+
+            float distance = Vector3.Distance(player.transform.position, enemy.transform.position);
+
+            distanceRatio = Mathf.Clamp01((distanceThreshold - distance) / distanceThreshold);
         }
+        
+
+        chaseVolume.weight = distanceRatio;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPause)
             {
-                pauseUI.SetActive(false);
 
                 Resume();
             }
             else
             {
-                pauseUI.SetActive(true);
 
                 Pause();
             }
@@ -140,14 +150,32 @@ public class GameManager : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1f;
+                pauseUI.SetActive(false);
         isPause = false;
     }
     public void Pause()
     {
         Time.timeScale = 0f;
         isPause = true;
+                pauseUI.SetActive(true);
     }
 
+    private void OnEnable()
+    {
+        // Register the FindEnemyInScene method to the SceneManager.sceneLoaded event
+        SceneManager.sceneLoaded += FindEnemyInScene;
+    }
 
+    private void OnDisable()
+    {
+        // Unregister the FindEnemyInScene method from the SceneManager.sceneLoaded event
+        SceneManager.sceneLoaded -= FindEnemyInScene;
+    }
+
+    private void FindEnemyInScene(Scene scene, LoadSceneMode mode)
+    {
+        // Find the enemy in the scene with the specified tag
+        enemy = GameObject.FindWithTag("Enemy")?.gameObject;
+    }
 
 }

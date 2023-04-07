@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Volume exhaustVolume;
 
+
     [SerializeField]
     private float walkSpeed = 4f;
     [SerializeField]
@@ -80,9 +81,11 @@ public class PlayerController : MonoBehaviour
             Walk();
 
         }
-
+        //runVolume
         volumeWeight = ((staminaCurrent / 100) - 1) * -1;
         exhaustVolume.weight = volumeWeight;
+
+
         //Checking for inputs
         xAxis = Input.GetAxisRaw("Horizontal");
     }

@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &297247803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297247805}
+  - component: {fileID: 297247804}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &297247805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297247803}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1095.4154, y: -448.6673, z: -5.128911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4440595458145767689}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &297247804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297247803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b3871ce56f9074f959cacef3fcbb63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicMixerGroup: {fileID: 5674042645074601131, guid: b913adb2898c91c41bf4aabadf8acd02, type: 2}
+  soundEffectsMixerGroup: {fileID: -8925351787668079539, guid: b913adb2898c91c41bf4aabadf8acd02, type: 2}
+  sounds:
+  - audioType: 1
+    source: {fileID: 0}
+    clipName: Mirror1
+    audioClip: {fileID: 8300000, guid: cf2059185196ef647a1b705d3814c1fc, type: 3}
+    isLoop: 1
+    playOnAwake: 1
+    volume: 0.357
+  - audioType: 0
+    source: {fileID: 0}
+    clipName: Stair
+    audioClip: {fileID: 8300000, guid: f72992c29d9c24a4d830b437230c8506, type: 3}
+    isLoop: 0
+    playOnAwake: 0
+    volume: 0.472
 --- !u!1 &2025744841
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,38 +588,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &4440595457274968623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4440595457274968620}
-  m_Layer: 0
-  m_Name: PauseCanvasTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4440595457274968620
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4440595457274968623}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4440595457702110127}
-  m_Father: {fileID: 4440595458145767689}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4440595457560038882
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,13 +902,15 @@ GameObject:
   - component: {fileID: 4440595457702110122}
   - component: {fileID: 4440595457702110125}
   - component: {fileID: 4440595457702110124}
+  - component: {fileID: 4325544244817099032}
+  - component: {fileID: 6363095215616899468}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: PauseCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4440595457702110127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -898,8 +929,8 @@ RectTransform:
   - {fileID: 4440595458057304765}
   - {fileID: 4440595459285460956}
   - {fileID: 8659425066483496138}
-  m_Father: {fileID: 4440595457274968620}
-  m_RootOrder: 0
+  m_Father: {fileID: 4440595458145767689}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -923,7 +954,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -967,6 +998,41 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4325544244817099032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440595457702110126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &6363095215616899468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4440595457702110126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
 --- !u!1 &4440595457815728714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,9 +1273,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4440595459313036260}
-  - {fileID: 4440595457274968620}
+  - {fileID: 4440595457702110127}
   - {fileID: 1170277825138715724}
   - {fileID: 4440595457655243611}
+  - {fileID: 297247805}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1225,16 +1292,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbee7e12769b174abc69262a95ac3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseUI: {fileID: 4440595457274968623}
+  pauseUI: {fileID: 4440595457702110126}
   deadUI: {fileID: 4440595457655243610}
   map: {fileID: 4440595457815728714}
   diary: {fileID: 0}
   diaryCount: 0
+  progress: 0
   normalVolume: {fileID: 2025744843}
   mirrorVolume: {fileID: 4440595459194156015}
-  chaseVolume: {fileID: 4440595458367397308}
+  chaseVolume: {fileID: 4440595458367397309}
+  enemy: {fileID: 0}
+  player: {fileID: 0}
+  maxChaseVolume: 0
+  distanceThreshold: 5
   isdead: 0
-  isChasing: 0
   isDiary: 0
   normalWorld: 0
   mirrorWorld1: 0
@@ -1524,7 +1595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4440595458367397306
 Transform:
   m_ObjectHideFlags: 0

@@ -29,8 +29,14 @@ public class Map : MonoBehaviour
         
     }
 
-    public void MapUpdate(int id)
+    public void MapUpdate(string mapname)
     {
-        mapImage.sprite = maps[id];
+        for (int i = 0; i < maps.Length; i++)
+        {
+            if (maps[i].name == mapname)
+            {
+                mapImage.sprite = maps[i];
+            }
+        }
     }
 }

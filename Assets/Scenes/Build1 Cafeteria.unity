@@ -348,7 +348,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2070220233196201348, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
       propertyPath: m_Name
-      value: Door (3)
+      value: Door (8)
       objectReference: {fileID: 0}
     - target: {fileID: 2070220233196201350, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
       propertyPath: m_RootOrder
@@ -396,11 +396,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070220233196201401, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
       propertyPath: mapid
-      value: 6
+      value: Build1 Hallway floor1
       objectReference: {fileID: 0}
     - target: {fileID: 2070220233196201401, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
       propertyPath: doorid
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}

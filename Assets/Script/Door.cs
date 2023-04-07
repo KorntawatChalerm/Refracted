@@ -8,8 +8,9 @@ public class Door : MonoBehaviour
     public GameObject bubble;
     public GameObject player;
     bool interactable;
-    public int mapid;
+    public string mapid;
     public int doorid;
+    public int progress;
 
     void Start()
     {
@@ -28,12 +29,12 @@ public class Door : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && interactable)
         {
-            if (GameManager.instance.progress == PlayerPrefs.GetInt("Progress"))
+            if (GameManager.instance.progress >= progress)
             {
-                GameManager.instance.isChasing = false;
                 PlayerPrefs.SetInt("doorID", doorid);
                 Map.instance.MapUpdate(mapid);
                 SceneManage.instance.ChangeScene(mapid);
+               AudioManager.Instance.Play("Stair");
             }
             else
             {
