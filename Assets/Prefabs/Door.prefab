@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070220232375758932}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.46, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 0.4811625, y: 0.26185715, z: 0.4811625}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -183,10 +183,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9a05be43dcc2344cbbc1fc5c2fb08f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogue:
+    Name: 
+    sentences: []
+    sprite1: []
+    sprite2: []
   bubble: {fileID: 2070220232375758932}
   player: {fileID: 3299041445152398288, guid: ab89ca0a91088a646bdf701c0d5b6c0a, type: 3}
   mapid: 0
   doorid: 0
+  progress: 0
 --- !u!61 &2070220233196201400
 BoxCollider2D:
   m_ObjectHideFlags: 0

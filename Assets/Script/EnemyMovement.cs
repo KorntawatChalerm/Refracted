@@ -23,16 +23,13 @@ public class EnemyMovement : MonoBehaviour
 
         if (transform.localScale.x < 0)
         {
-
             vel.x = -speed;
             //some variable = minus
         }
         else
         {
-
             vel.x = speed;
             //some variable = plus
-
         }
 
         rb2d.velocity = vel;

@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Volume exhaustVolume;
 
+
     [SerializeField]
     private float walkSpeed = 4f;
     [SerializeField]
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl) && !isExhaust)
         {
             Debug.Log("crouch");
             Crouching();
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             isCrouchPressed = false;
         }
-        if (Input.GetKey(KeyCode.LeftShift)  && ismoving && !isExhaust)
+        if (Input.GetKey(KeyCode.LeftShift) && ismoving && !isExhaust)
         {
 
             isRunning = true;
@@ -80,9 +81,11 @@ public class PlayerController : MonoBehaviour
             Walk();
 
         }
-
-        volumeWeight = ((staminaCurrent/100)-1)*-1;
+        //runVolume
+        volumeWeight = ((staminaCurrent / 100) - 1) * -1;
         exhaustVolume.weight = volumeWeight;
+
+
         //Checking for inputs
         xAxis = Input.GetAxisRaw("Horizontal");
     }
@@ -106,7 +109,14 @@ public class PlayerController : MonoBehaviour
 
             return;
         }
+        if (DialogueManager.instance.isTalking)
+        {
+            vel.x = 0;
+            rb2d.velocity = vel;
+            ChangeAnimationState(PLAYER_IDLE);
 
+            return;
+        }
         if (xAxis < 0)
         {
             vel.x = -speed;

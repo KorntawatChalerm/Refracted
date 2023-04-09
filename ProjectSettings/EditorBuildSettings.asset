@@ -5,10 +5,37 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test/Test1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test/Test2.unity
     guid: c1ef103647c0b7643a73642b0c0f5afa
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: ed6785760214c2b41977bd8f434cd4b7
+  - enabled: 1
+    path: Assets/Scenes/TutorialRoom1.unity
+    guid: d38a28941b7b1d040af1163f2aa1f37a
+  - enabled: 1
+    path: Assets/Scenes/TutorialHallway1.unity
+    guid: d92c0d4f74f9ebd4d850ed0595d2c90d
+  - enabled: 1
+    path: Assets/Scenes/TutorialLivingroom.unity
+    guid: 89798e56cf6b25e45b586d741e9d15af
+  - enabled: 1
+    path: "Assets/Scenes/Tutorial\u0E3ABasement.unity"
+    guid: efe4707e94af04747b5d9eabd9112b3a
+  - enabled: 1
+    path: Assets/Scenes/Build1 Hallway floor3.unity
+    guid: 3a4d7f4816d4d5c4382b5e0e0008a0ef
+  - enabled: 1
+    path: Assets/Scenes/Build1 Hallway floor2.unity
+    guid: 9c8a5c6d56974454682cdd11f7c396a5
+  - enabled: 1
+    path: Assets/Scenes/Build1 Hallway floor1.unity
+    guid: f4d7653d3e01a264eb4ab492732dbe04
+  - enabled: 1
+    path: Assets/Scenes/Build1 Room 311.unity
+    guid: 9bcd14912804d28439f296c22946f31d
   m_configObjects: {}

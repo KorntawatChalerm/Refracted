@@ -14,7 +14,15 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         foreach (Sound s in sounds)
         {
@@ -35,10 +43,10 @@ public class AudioManager : MonoBehaviour
             }
 
             if (s.playOnAwake)
-                s.source.Play();
+                s.source.Play(0);
         }
     }
-
+    
     public void Play(string clipname)
     {
         Sound s = Array.Find(sounds, dummySound => dummySound.clipName == clipname);
@@ -47,7 +55,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Sound: " + clipname + " does NOT exist!");
             return;
         }
-        s.source.Play();
+        s.source.Play(0);
     }
 
     public void Stop(string clipname)

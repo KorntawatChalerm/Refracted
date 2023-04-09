@@ -14,7 +14,10 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private Queue<Sprite> sprite1list;
     private Queue<Sprite> sprite2list;
-    private bool isTalking;
+    public bool isTalking;
+    private bool isTyping;
+    [SerializeField]
+    private float typeSpeed = 0.05f;
     private void Awake()
     {
         if (instance == null)
@@ -38,7 +41,6 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("dialogue started");
         isTalking = true;
-        Time.timeScale = 0;
         dialogueUI.SetActive(true);
 
 
@@ -62,31 +64,36 @@ public class DialogueManager : MonoBehaviour
     }
     public void DisplayNextSentence()
     {
+        typeSpeed = 0.05f;
         if (sentences.Count == 0)
         {
             EndDialogue();
             return;
         }
 
+
         string sentence = sentences.Dequeue();
         Sprite sprite1 = sprite1list.Dequeue();
         Sprite sprite2 = sprite2list.Dequeue();
         Debug.Log(sentence);
-     //   text.text = (sentence);
         leftSprite.sprite = (sprite1);
         rightSprite.sprite = (sprite2);
+
+
         StopAllCoroutines();
         StartCoroutine(TypingSentence(sentence));
     }
     IEnumerator TypingSentence(string sentence)
     {
         text.text = "";
-        foreach(char letter in sentence.ToCharArray())
+        isTyping = true;
+        foreach (char letter in sentence.ToCharArray())
         {
             text.text += letter;
 
-            yield return new WaitForSecondsRealtime(0.05f);
+            yield return new WaitForSecondsRealtime(typeSpeed);
         }
+        isTyping = false;
     }
     private void Update()
     {
@@ -95,14 +102,18 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isTyping)
+        {
+            typeSpeed = 0f;
+
+        }
+        else if (Input.GetMouseButtonDown(0) && !isTyping)
         {
             DisplayNextSentence();
         }
     }
     void EndDialogue()
     {
-        Time.timeScale = 1;
         isTalking = false;
         Debug.Log("End conver");
         dialogueUI.SetActive(false);

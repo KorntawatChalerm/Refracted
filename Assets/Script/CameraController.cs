@@ -9,7 +9,6 @@ public class CameraController : MonoBehaviour
     public float FollowSpeed;
     public float zoomSpeed;
     public float normalView;
-    public float zoomView;
     private Vector3 velocity = Vector3.zero;
 
     private Transform Target;
@@ -25,17 +24,13 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         Vector3 newPos = new Vector3(Target.position.x, Target.position.y + yOffset, -10f);
-       // transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
+        // transform.position = Vector3.Slerp(transform.position, newPos, FollowSpeed * Time.deltaTime);
 
-       transform.position = Vector3.SmoothDamp(transform.position, newPos ,ref velocity,0.2f);
-        if (GameManager.instance.isChasing)
-        {
-            Camera.main.orthographicSize = Mathf.Lerp(cam.orthographicSize, zoomView, zoomSpeed);
-        }
-        else
-        {
-            Camera.main.orthographicSize = Mathf.Lerp(cam.orthographicSize, normalView, zoomSpeed);
+        transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, 0.2f);
 
-        }
+
+        Camera.main.orthographicSize = Mathf.Lerp(cam.orthographicSize, normalView, zoomSpeed);
+
+
     }
 }

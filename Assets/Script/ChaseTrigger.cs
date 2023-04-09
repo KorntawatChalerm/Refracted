@@ -16,7 +16,6 @@ public class ChaseTrigger : MonoBehaviour
         //spawn enemy
         if (id == correctID)
         {
-            GameManager.instance.isChasing = true;
             enemy.SetActive(true);
         }
 

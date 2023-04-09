@@ -33,12 +33,14 @@ public class SceneManage : MonoBehaviour
     public void  NewGame()
     {
         SceneManager.LoadScene(1);
+        PlayerPrefs.DeleteAll();
     }
     public void BacktoMainmenu()
     {
         currentScene = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("SavedScene", currentScene);
         PlayerPrefs.SetInt("Diary", GameManager.instance.diaryCount);
+        PlayerPrefs.SetInt("Progress", GameManager.instance.progress);
         SceneManager.LoadScene("MainMenu");
 
     }
@@ -59,16 +61,16 @@ public class SceneManage : MonoBehaviour
 
     }
 
-    public void ChangeScene(int index)
+    public void ChangeScene(string mapname)
     {
         Debug.Log("changingScene");
         anim.Play("FadeOut",0,0f);
-        StartCoroutine(StartChangeScene(index));
+        StartCoroutine(StartChangeScene(mapname));
     }
-   IEnumerator StartChangeScene(int index)
+   IEnumerator StartChangeScene(string mapname)
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(index);
+        SceneManager.LoadScene(mapname);
     }
 
    public void Exit()
