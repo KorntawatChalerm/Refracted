@@ -34,7 +34,6 @@ public class Door : MonoBehaviour
             if (GameManager.instance.progress >= progress)
             {
                 PlayerPrefs.SetInt("doorID", doorid);
-                Map.instance.MapUpdate(mapid);
                 SceneManage.instance.ChangeScene(mapid);
                 if (isstair)
                 {
