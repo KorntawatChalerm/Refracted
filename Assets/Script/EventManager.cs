@@ -9,6 +9,7 @@ public class EventManager : MonoBehaviour
     public event Action TestEvent;
     public event Action<int> TestInteraction;
     public event Action<int> chaseEvent;
+    public event Action<int> questEvent;
 
 
 
@@ -41,5 +42,8 @@ public class EventManager : MonoBehaviour
         chaseEvent?.Invoke(id);
     }
 
-
+    public void ProgressUp(int id)
+    {
+        questEvent?.Invoke(id);
+    }
 }

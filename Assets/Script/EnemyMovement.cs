@@ -39,14 +39,14 @@ public class EnemyMovement : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")&& !Input.GetKey(KeyCode.LeftControl))
         {
             //player die
             GameManager.instance.isdead = true;
-        }/*if (collision.CompareTag("EndChase"))
+        }if (collision.CompareTag("Patrol"))
         {
-            //end chase
-            GameManager.instance.isdead = false;
-        }*/
+            //turn
+            transform.localScale = new Vector2(-(Mathf.Sign(rb2d.velocity.x)), transform.localScale.y);
+        }
     }
 }

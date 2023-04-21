@@ -11,9 +11,11 @@ public class Door : MonoBehaviour
     public string mapid;
     public int doorid;
     public int progress;
+    public bool isstair;
 
     void Start()
     {
+
         if (PlayerPrefs.GetInt("doorID") == doorid)
         {
             Debug.Log("door " + doorid);
@@ -34,7 +36,16 @@ public class Door : MonoBehaviour
                 PlayerPrefs.SetInt("doorID", doorid);
                 Map.instance.MapUpdate(mapid);
                 SceneManage.instance.ChangeScene(mapid);
-               AudioManager.Instance.Play("Stair");
+                if (isstair)
+                {
+                    AudioManager.Instance.Play("Stair");
+
+                }
+                else
+                {
+                    AudioManager.Instance.Play("Door");
+
+                }
             }
             else
             {

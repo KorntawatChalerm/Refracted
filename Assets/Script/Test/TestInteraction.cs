@@ -7,15 +7,18 @@ public class TestInteraction : MonoBehaviour
     bool fall = false;
     public Transform point;
     public float fallspeed;
-    public int correctID;
+    public int fallID;
+    public int fadeID;
+    public bool progress;
     void Start()
     {
         EventManager.instance.TestInteraction += Falldown;
+        EventManager.instance.TestInteraction += Fade;
     }
 
     void Falldown(int id)
     {
-        if (id == correctID)
+        if (id == fallID)
         fall = true;
     }
     void Update()
@@ -26,8 +29,22 @@ public class TestInteraction : MonoBehaviour
         }
     }
 
+    void ProgressUp()
+    {
+        GameManager.instance.ProgressUp();
+    }
+    void Fade(int id)
+    {
+        if (id == fadeID)
+        {
+            SceneManage.instance.Fade();
+            ProgressUp();
+        }
+    }
     private void OnDisable()
     {
         EventManager.instance.TestInteraction -= Falldown;
+        EventManager.instance.TestInteraction -= Fade;
+
     }
 }

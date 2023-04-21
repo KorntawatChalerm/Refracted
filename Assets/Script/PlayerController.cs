@@ -153,7 +153,6 @@ public class PlayerController : MonoBehaviour
     void Crouching()
     {
         ChangeAnimationState(PLAYER_CROUCH);
-
     }
 
     void ChangeAnimationState(string newAnimation)
