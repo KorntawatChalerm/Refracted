@@ -37,19 +37,23 @@ public class SceneManage : MonoBehaviour
     }
     public void BacktoMainmenu()
     {
+        
         currentScene = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("SavedScene", currentScene);
         PlayerPrefs.SetInt("Diary", GameManager.instance.diaryCount);
         PlayerPrefs.SetInt("Progress", GameManager.instance.progress);
         SceneManager.LoadScene("MainMenu");
-
+        GameManager.instance.isMainmenu = true;
+        Time.timeScale = 1f;
     }
     public void Continue()
     {
         int scene = PlayerPrefs.GetInt("SavedScene");
         int diary = PlayerPrefs.GetInt("Diary");
+        int progress = PlayerPrefs.GetInt("Progress");
         SceneManager.LoadScene(scene);
         GameManager.instance.diaryCount = diary;
+        GameManager.instance.progress = progress;
     }
 
     public void Setting()
@@ -64,7 +68,7 @@ public class SceneManage : MonoBehaviour
     public void ChangeScene(string mapname)
     {
         Debug.Log("changingScene");
-        anim.Play("FadeOut",0,0f);
+        Fade();
         StartCoroutine(StartChangeScene(mapname));
     }
    IEnumerator StartChangeScene(string mapname)
@@ -72,8 +76,13 @@ public class SceneManage : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(mapname);
     }
+    public void Fade()
+    {
+        anim.Play("FadeOut", 0, 0f);
 
-   public void Exit()
+    }
+
+    public void Exit()
     {
         Application.Quit();
     }

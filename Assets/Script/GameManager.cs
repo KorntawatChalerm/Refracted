@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject map;
     public GameObject diary; //diary ui
     public int diaryCount;
-    public int progress;
+    public int progress = 0;
 
     [Header("Volume")]
     [SerializeField]
@@ -27,9 +27,10 @@ public class GameManager : MonoBehaviour
     private float distanceThreshold = 5f;
     private float distanceRatio = 0f;
 
+    public bool isMainmenu = false;
+
 
     private bool isPause;
-    private bool isMainmenu = false;
     private int currentMap;
     [Header("Bool checker")]
     public bool isdead;
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     {
         if (isMainmenu)
         {
+            Destroy(gameObject);
             return;
         }
 
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour
         {
             // Enemy object not found, set distance ratio to 0
             distanceRatio = 0f;
+            TryFindEnemyInScene();
         }
         else
         {
@@ -103,7 +106,6 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-
                 Pause();
             }
         }
@@ -160,7 +162,7 @@ public class GameManager : MonoBehaviour
                 pauseUI.SetActive(true);
     }
 
-    private void OnEnable()
+    /*private void OnEnable()
     {
         // Register the FindEnemyInScene method to the SceneManager.sceneLoaded event
         SceneManager.sceneLoaded += FindEnemyInScene;
@@ -176,6 +178,15 @@ public class GameManager : MonoBehaviour
     {
         // Find the enemy in the scene with the specified tag
         enemy = GameObject.FindWithTag("Enemy")?.gameObject;
+    }*/
+    private void TryFindEnemyInScene()
+    {
+        // Find the enemy in the scene with the specified tag
+        enemy = GameObject.FindWithTag("Enemy")?.gameObject;
     }
+    public void ProgressUp()
+    {
+        progress++;
 
+    }
 }

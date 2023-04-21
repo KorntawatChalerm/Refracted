@@ -15,16 +15,22 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ed6785760214c2b41977bd8f434cd4b7
   - enabled: 1
-    path: Assets/Scenes/TutorialRoom1.unity
+    path: Assets/Scenes/StoryCutscene.unity
+    guid: 0a75345dd21d46448939041980f203e3
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/TutorialRoom323.unity
     guid: d38a28941b7b1d040af1163f2aa1f37a
   - enabled: 1
-    path: Assets/Scenes/TutorialHallway1.unity
+    path: Assets/Scenes/Tutorial/TutorialHallway1.unity
     guid: d92c0d4f74f9ebd4d850ed0595d2c90d
   - enabled: 1
-    path: Assets/Scenes/TutorialLivingroom.unity
+    path: Assets/Scenes/Tutorial/TutorialHallway2.unity
+    guid: 76dc4917e842c5941b17f6243f5f3e3b
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/TutorialLivingroom.unity
     guid: 89798e56cf6b25e45b586d741e9d15af
   - enabled: 1
-    path: "Assets/Scenes/Tutorial\u0E3ABasement.unity"
+    path: "Assets/Scenes/Tutorial/Tutorial\u0E3ABasement.unity"
     guid: efe4707e94af04747b5d9eabd9112b3a
   - enabled: 1
     path: Assets/Scenes/Build1 Hallway floor3.unity
@@ -38,4 +44,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Build1 Room 311.unity
     guid: 9bcd14912804d28439f296c22946f31d
+  - enabled: 1
+    path: Assets/Scenes/Build1 Room 312.unity
+    guid: 27f4235ccc56fea42a4f285798813c38
+  - enabled: 1
+    path: Assets/Scenes/Build1 Room 313.unity
+    guid: 25167262cd85c1147b11fd5967c946dc
+  - enabled: 1
+    path: Assets/Scenes/Build1 Room 321.unity
+    guid: 96723e2f01a2b594b8a92d8325641441
+  - enabled: 1
+    path: Assets/Scenes/Build1 Room 322.unity
+    guid: 4f32f5e895942bd4db7c78a1127652ad
+  - enabled: 1
+    path: Assets/Scenes/Build1 Room 323.unity
+    guid: 5fa314ef6c2c89e4fb11a8089aa7112c
+  - enabled: 1
+    path: Assets/Scenes/Build1 Room 331.unity
+    guid: abd6f2507f2d7f24090f5919413ab1ce
+  - enabled: 1
+    path: Assets/Scenes/Build1 Room 332.unity
+    guid: cb0ad4df6d44d6a4ea91f1d8b2894f2d
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/TutorialKitchen.unity
+    guid: 9de9b4a5921ec4747bb607e8a9527f66
+  - enabled: 1
+    path: Assets/Scenes/Build1 Cafeteria.unity
+    guid: eb0550de95103bd4bb107caee8630077
   m_configObjects: {}

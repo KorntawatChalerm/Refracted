@@ -39,6 +39,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
+        Time.timeScale = 0;
         Debug.Log("dialogue started");
         isTalking = true;
         dialogueUI.SetActive(true);
@@ -117,6 +118,7 @@ public class DialogueManager : MonoBehaviour
         isTalking = false;
         Debug.Log("End conver");
         dialogueUI.SetActive(false);
+        Time.timeScale = 1;
 
     }
 }
