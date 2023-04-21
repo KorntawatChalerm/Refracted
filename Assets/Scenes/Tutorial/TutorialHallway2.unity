@@ -1799,7 +1799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070220233196201401, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
       propertyPath: doorid
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2070220233196201401, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
       propertyPath: isstair
