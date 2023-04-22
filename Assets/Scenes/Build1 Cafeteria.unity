@@ -334,6 +334,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2070220232375758932, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070220232375758935, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.79
+      objectReference: {fileID: 0}
     - target: {fileID: 2070220233196201348, guid: 47d8735bae4ce494ea0c15c9927a292f, type: 3}
       propertyPath: m_Name
       value: Door (8)
@@ -581,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 83847896479913173, guid: 934002145d132b74da00394f2ba8c1ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.32
+      value: -4.93
       objectReference: {fileID: 0}
     - target: {fileID: 83847896479913173, guid: 934002145d132b74da00394f2ba8c1ce, type: 3}
       propertyPath: m_LocalPosition.z

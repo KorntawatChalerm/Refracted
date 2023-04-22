@@ -86,6 +86,12 @@ public class SceneManage : MonoBehaviour
     {
         Application.Quit();
     }
+    public void EndGame(int result)
+    {
+        Fade();
 
-    
+        SceneManager.LoadScene(result);
+
+    }
+
 }
